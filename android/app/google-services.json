@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "630110142449",
+    "project_id": "digistart-teste",
+    "storage_bucket": "digistart-teste.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630110142449:android:e795bd1dd39bec3db8ce50",
+        "android_client_info": {
+          "package_name": "com.example.covid_cases_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "630110142449-pa9fe4a5ag8th4kc0mv65qkdg6lvkrkd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkzVsrfcrH8rQFE3Xi6LXYXdBMm9G4xCg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "630110142449-pa9fe4a5ag8th4kc0mv65qkdg6lvkrkd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
