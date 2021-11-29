@@ -8,7 +8,7 @@
   <img align="center" alt="Wennys-Flutter" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/firebase/firebase-plain.svg">
 </div>
 
-![Alt Text](gif/gif.gif)
+![Alt Text](screenshots/gif.gif)
 
 
 ## Screens
