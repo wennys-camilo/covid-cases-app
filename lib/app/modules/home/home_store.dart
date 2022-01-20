@@ -21,29 +21,14 @@ abstract class HomeStoreBase with Store {
   Option<Failure>? failure;
 
   HomeStoreBase({required this.covidCasesRepository}) {
-    fetchCasesInitial();
+    fetchCases();
   }
 
   @action
-  Future<void> fetchCasesInitial() async {
+  Future<void> fetchCases({String? url}) async {
     loading = true;
     failure = none();
-    final response = await covidCasesRepository.getCases();
-
-    response.fold((failuresResult) {
-      failure = optionOf(failuresResult);
-      loading = false;
-    }, (sucessResult) {
-      loading = false;
-      casesCovid = sucessResult;
-    });
-  }
-
-  @action
-  Future<void> fetchNextOrPrevious(String url) async {
-    loading = true;
-    failure = none();
-    final response = await covidCasesRepository.getNextPrevious(url);
+    final response = await covidCasesRepository.getCases(url: url);
 
     response.fold((failuresResult) {
       failure = optionOf(failuresResult);

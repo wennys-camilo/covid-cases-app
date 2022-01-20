@@ -4,8 +4,7 @@ import '../../helpers/failure.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class CovidCasesRepository {
-  Future<Either<Failure, CovidDataCases>> getCases();
-  Future<Either<Failure, CovidDataCases>> getNextPrevious(String url);
+  Future<Either<Failure, CovidDataCases>> getCases({String? url});
 }
 
 class CovidCasesImpl implements CovidCasesRepository {
@@ -14,19 +13,9 @@ class CovidCasesImpl implements CovidCasesRepository {
   const CovidCasesImpl(this._remoteDatasource);
 
   @override
-  Future<Either<Failure, CovidDataCases>> getCases() async {
+  Future<Either<Failure, CovidDataCases>> getCases({String? url}) async {
     try {
-      final response = await _remoteDatasource.fetch();
-      return Right(response!);
-    } on Failure catch (error) {
-      return Left(error);
-    }
-  }
-
-  @override
-  Future<Either<Failure, CovidDataCases>> getNextPrevious(String url) async {
-    try {
-      final response = await _remoteDatasource.fetchNextPrevious(url);
+      final response = await _remoteDatasource.fetch(url);
       return Right(response!);
     } on Failure catch (error) {
       return Left(error);

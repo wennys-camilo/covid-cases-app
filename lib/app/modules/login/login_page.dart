@@ -14,6 +14,8 @@ import 'login_store.dart';
 import 'widgets/no_account_widget.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -90,7 +92,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                                       email: value,
                                     ),
                                   ),
-                                  SizedBox(height: 8.0),
+                                  const SizedBox(height: 8.0),
                                   RoundedInputWidget(
                                     hintText: 'Senha',
                                     iconData: Icons.lock,
@@ -103,7 +105,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                                     ),
                                   ),
                                   store.loading
-                                      ? CircularProgressIndicator()
+                                      ? const CircularProgressIndicator()
                                       : RoundedButtonWidget(
                                           text: 'Entrar',
                                           color: AppColors.blue,
@@ -162,7 +164,9 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
             }
 
             return Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                color: AppColors.blue,
+              ),
             );
           },
         ),

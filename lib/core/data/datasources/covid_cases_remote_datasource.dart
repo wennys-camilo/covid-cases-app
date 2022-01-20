@@ -6,8 +6,7 @@ import 'package:dio/dio.dart';
 import 'remote_datasource.dart';
 
 abstract class CovidCasesRemoteDatasource {
-  Future<CovidDataCases?> fetch();
-  Future<CovidDataCases?> fetchNextPrevious(String url);
+  Future<CovidDataCases?> fetch(String? url);
 }
 
 class CovidCasesRemoteDatasourceImpl extends RemoteDatasource
@@ -17,29 +16,11 @@ class CovidCasesRemoteDatasourceImpl extends RemoteDatasource
   const CovidCasesRemoteDatasourceImpl(this._httpClient);
 
   @override
-  Future<CovidDataCases?> fetch() async {
+  Future<CovidDataCases?> fetch(String? url) async {
     try {
       final Response response = await _httpClient.get(
-          "https://api.brasil.io/v1/dataset/covid19/caso/data/?search=&date=&state=&pla",
-          options: Options(headers: {
-            'Authorization': 'Token 8b34c604f8c467c5950550f6870bde20dc5229fb'
-          }));
-      final result = handleResponse<Map<String, dynamic>>(response);
-      if (result == null) return null;
-      return CovidDataCases.fromMap(result);
-    } on Failure {
-      rethrow;
-    } on DioError catch (error, stackTrace) {
-      throw ServerError.generic(stackTrace: stackTrace);
-    } catch (error, stackTrace) {
-      throw DatasourceError(message: error.toString(), stackTrace: stackTrace);
-    }
-  }
-
-  @override
-  Future<CovidDataCases?> fetchNextPrevious(String url) async {
-    try {
-      final Response response = await _httpClient.get(url,
+          url ??
+              "https://api.brasil.io/v1/dataset/covid19/caso/data/?search=&date=&state=&pla",
           options: Options(headers: {
             'Authorization': 'Token 8b34c604f8c467c5950550f6870bde20dc5229fb'
           }));

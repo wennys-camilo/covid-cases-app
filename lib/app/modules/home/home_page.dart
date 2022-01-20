@@ -38,7 +38,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text('Casos de Covid'),
+        title: const Text('Casos de Covid'),
         backgroundColor: AppColors.blue,
         centerTitle: true,
         actions: [
@@ -47,32 +47,38 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                 await Modular.get<LoginStore>().signOut();
                 Modular.to.navigate('/');
               },
-              icon: Icon(Icons.exit_to_app))
+              icon: const Icon(Icons.exit_to_app))
         ],
       ),
       body: Observer(
         builder: (_) {
           return store.casesCovid == null
-              ? Container(
-                  child: Center(
-                    child: TextButton(
-                      onPressed: () {
-                        store.fetchCasesInitial();
-                      },
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          store.loading
-                              ? CircularProgressIndicator()
-                              : Icon(Icons.refresh),
-                          Text('Buscar novamente'),
-                        ],
-                      ),
+              ? Center(
+                  child: TextButton(
+                    onPressed: () {
+                      store.fetchCases();
+                    },
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        store.loading
+                            ? CircularProgressIndicator(
+                                color: AppColors.blue,
+                              )
+                            : const Icon(Icons.refresh),
+                        Text(
+                          store.loading ? 'Aguarde' : 'Buscar novamente',
+                          style: TextStyle(color: AppColors.blue),
+                        ),
+                      ],
                     ),
                   ),
                 )
               : store.loading
-                  ? Center(child: CircularProgressIndicator())
+                  ? Center(
+                      child: CircularProgressIndicator(
+                      color: AppColors.blue,
+                    ))
                   : ListView.builder(
                       padding: const EdgeInsets.all(8),
                       itemCount: store.casesCovid?.results.length,
@@ -97,8 +103,8 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
               child: IconButton(
                 onPressed: store.casesCovid?.previous != null
                     ? () async {
-                        await store.fetchNextOrPrevious(
-                            store.casesCovid!.previous ?? '');
+                        await store.fetchCases(
+                            url: store.casesCovid!.previous ?? '');
                       }
                     : null,
                 icon: Icon(
@@ -107,7 +113,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 5,
             ),
             Container(
@@ -117,9 +123,9 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
               ),
               child: IconButton(
                 onPressed: () async {
-                  await store.fetchNextOrPrevious(store.casesCovid!.next!);
+                  await store.fetchCases(url: store.casesCovid!.next ?? '');
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.arrow_forward,
                   color: Colors.white,
                 ),

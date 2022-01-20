@@ -32,7 +32,7 @@ abstract class _SignUpStoreBase with Store {
     } on FirebaseAuthException catch (e) {
       onFail(getErrorString(e.code));
     } catch (e) {
-      throw e;
+      rethrow;
     }
     loading = false;
     return user;

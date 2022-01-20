@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
 class AppColors {
-  static final white = Color(0xFFFFFFFF);
-  static final black = Color(0xFF000000);
-  static final blue = Color(0xFF288fac);
-  static final red = Color(0xFFD8392B);
-  static final grey = Color(0xFF808080);
+  static Color white = const Color(0xFFFFFFFF);
+  static Color black = const Color(0xFF000000);
+  static Color blue = const Color(0xFF288fac);
+  static Color red = const Color(0xFFD8392B);
+  static Color grey = const Color(0xFF808080);
 }

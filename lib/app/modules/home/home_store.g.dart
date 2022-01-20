@@ -54,21 +54,11 @@ mixin _$HomeStore on HomeStoreBase, Store {
     });
   }
 
-  final _$fetchCasesInitialAsyncAction =
-      AsyncAction('HomeStoreBase.fetchCasesInitial');
+  final _$fetchCasesAsyncAction = AsyncAction('HomeStoreBase.fetchCases');
 
   @override
-  Future<void> fetchCasesInitial() {
-    return _$fetchCasesInitialAsyncAction.run(() => super.fetchCasesInitial());
-  }
-
-  final _$fetchNextOrPreviousAsyncAction =
-      AsyncAction('HomeStoreBase.fetchNextOrPrevious');
-
-  @override
-  Future<void> fetchNextOrPrevious(String url) {
-    return _$fetchNextOrPreviousAsyncAction
-        .run(() => super.fetchNextOrPrevious(url));
+  Future<void> fetchCases({String? url}) {
+    return _$fetchCasesAsyncAction.run(() => super.fetchCases(url: url));
   }
 
   @override

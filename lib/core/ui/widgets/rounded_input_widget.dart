@@ -49,7 +49,7 @@ class RoundedInputWidget extends StatelessWidget {
           hintText: hintText,
           prefixIcon:
               iconData != null ? Icon(iconData, color: Colors.grey) : null,
-          contentPadding: EdgeInsets.symmetric(
+          contentPadding: const EdgeInsets.symmetric(
             horizontal: 10,
             vertical: 10,
           ),

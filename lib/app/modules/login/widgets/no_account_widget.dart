@@ -10,13 +10,13 @@ class NoAcconuntWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Text(
+        const Text(
           "Não possui uma conta ? ",
           style: TextStyle(color: Color(0xff2e2e42)),
         ),
         GestureDetector(
           onTap: press,
-          child: Text(
+          child: const Text(
             "Cadastre-se",
             style: TextStyle(
               color: Color(0xff2e2e42),

@@ -10,6 +10,8 @@ import '../../../core/ui/widgets/rounded_input_widget.dart';
 import 'signup_store.dart';
 
 class SignUpPage extends StatefulWidget {
+  const SignUpPage({Key? key}) : super(key: key);
+
   @override
   _SignUpPageState createState() => _SignUpPageState();
 }
@@ -24,6 +26,17 @@ class _SignUpPageState extends ModularState<SignUpPage, SignUpStore> {
   final _focusName = FocusNode();
   final _focusEmail = FocusNode();
   final _focusPassword = FocusNode();
+
+  @override
+  void dispose() {
+    _nameTextController.dispose();
+    _emailTextController.dispose();
+    _passwordTextController.dispose();
+    _focusName.dispose();
+    _focusEmail.dispose();
+    _focusPassword.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +65,7 @@ class _SignUpPageState extends ModularState<SignUpPage, SignUpStore> {
                         "Faça o cadastro para continuar",
                         style: AppTextStyles.greyText,
                       ),
-                      SizedBox(height: 50),
+                      const SizedBox(height: 50),
                       RoundedInputWidget(
                         iconData: Icons.person,
                         hintText: "Name",
@@ -62,7 +75,7 @@ class _SignUpPageState extends ModularState<SignUpPage, SignUpStore> {
                           name: value,
                         ),
                       ),
-                      SizedBox(height: 16.0),
+                      const SizedBox(height: 16.0),
                       RoundedInputWidget(
                         iconData: Icons.email,
                         hintText: "Email",
@@ -72,7 +85,7 @@ class _SignUpPageState extends ModularState<SignUpPage, SignUpStore> {
                           email: value,
                         ),
                       ),
-                      SizedBox(height: 16.0),
+                      const SizedBox(height: 16.0),
                       RoundedInputWidget(
                         iconData: Icons.lock,
                         hintText: "Password",
@@ -92,7 +105,7 @@ class _SignUpPageState extends ModularState<SignUpPage, SignUpStore> {
                             style: AppTextStyles.textButtonBluekUnderline,
                           )),
                       store.loading
-                          ? CircularProgressIndicator()
+                          ? const CircularProgressIndicator()
                           : RoundedButtonWidget(
                               color: AppColors.blue,
                               text: "Sign up",
@@ -119,7 +132,7 @@ class _SignUpPageState extends ModularState<SignUpPage, SignUpStore> {
                                   }
                                 }
                               },
-                              child: Text(
+                              child: const Text(
                                 'Cadastrar',
                                 style: TextStyle(color: Colors.white),
                               ),
